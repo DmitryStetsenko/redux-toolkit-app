@@ -71,6 +71,12 @@ li {
 .todoItem * {
   margin-right: 10px;
 }
+
+.todoItem *:first-child {
+  font-size: .7rem;
+  font-weight: bold;
+}
+
 .todoItem *:last-child {
   margin-right: 0;
   margin-left: auto;
