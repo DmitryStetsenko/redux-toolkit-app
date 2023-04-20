@@ -85,4 +85,12 @@ li {
   color: red;
   padding: 10px;
   cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.todoItem__completed:checked + p {
+  text-decoration: line-through;
+  color: grey;
+  font-style: italic;
 }

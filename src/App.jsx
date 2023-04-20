@@ -1,10 +1,11 @@
 import { useState } from "react";
+import TodoList from "./components/TodoList";
+import InputField from "./components/InputField";
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [text, setText] = useState('');
 
-  const addTodo = () => {
+  const addTodo = (text) => {
     if (!text.trim()) {
       return;
     }
@@ -12,35 +13,35 @@ function App() {
     setTodos(
       [...todos, { id: new Date().toISOString(), text, completed: false}]
     );
-    setText('');
+  }
+
+  const delTodo = (id) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  }
+
+  const toggleTodoCompleted = (id) => {
+    setTodos(todos.map(todo => {
+      if (todo.id !== id) {
+        return todo;
+      }
+
+      return { ...todo, completed: !todo.completed }
+    }));
   }
 
   return (
     <div className="App">
 
       <h1>Redux toolkit</h1>
-
-      <div className="addTodo">
-        <label className="addTodo__label">
-          <input className="addTodo__input" type="text" value={ text } onChange={ e => setText(e.target.value) }/>
-        </label>
-        <button onClick={addTodo}>Add Todo</button>
-      </div>
-
+      <InputField addTodo={ addTodo } />
+      
       <div className="todoListBlock">
         <h2>Todo list</h2>
-        <ul className="todoList">
-          {
-            todos.map((todo, index) => (
-              <li key={todo.id} className="todoItem">
-                <span className="todoItem__number">{ index + 1 }</span>
-                <input className="todoItem__completed" type="checkbox" name="completed" checked={ todo.completed ? true : false } />
-                <p className="todoItem__text">{ todo.text }</p>
-                <span className="todoItem__del">&times;</span>
-              </li>
-            ))
-          }
-        </ul>
+        <TodoList 
+          todos={todos} 
+          delTodo={ delTodo }
+          toggleTodoCompleted={ toggleTodoCompleted }
+        />
       </div>
       
     </div>
