@@ -13,7 +13,7 @@ const InputField = ({ addTodo }) => {
             <label className="addTodo__label">
                 <input className="addTodo__input" type="text" value={ text } onChange={ e => setText(e.target.value) }/>
             </label>
-            <button onClick={ addTodoHandler }>Add Todo</button>
+            <button onClick={ addTodoHandler }>Add</button>
         </div>
 
      );
