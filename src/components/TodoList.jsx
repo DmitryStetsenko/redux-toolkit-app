@@ -1,6 +1,9 @@
+import { useSelector } from 'react-redux';
 import TodoItem from "./TodoItem";
 
-const TodoList = ({todos, delTodo, toggleTodoCompleted}) => {
+const TodoList = ({toggleTodoCompleted}) => {
+    const todos = useSelector(state => state.todos.todos);
+
     return (
         <ul className="todoList">
             { 
@@ -9,7 +12,6 @@ const TodoList = ({todos, delTodo, toggleTodoCompleted}) => {
                         key={todo.id} 
                         todo={ todo } 
                         index={ index }
-                        delTodo={ delTodo }
                         toggleTodoCompleted={ toggleTodoCompleted }
                     />
                 ) 

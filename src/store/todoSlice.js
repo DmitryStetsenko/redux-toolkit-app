@@ -13,8 +13,13 @@ const todoSlice = createSlice({
                 completed: false
             });
         },
-        delTodo(state, action) {},
-        toggleTodoCompleted(state, action) {},
+        delTodo(state, action) {
+            state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
+        },
+        toggleTodoCompleted(state, action) {
+            const toggleTodo = state.todos.find(todo => todo.id === action.payload.id);
+            toggleTodo.completed = !toggleTodo.completed;
+        },
     },
 });
 
