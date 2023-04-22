@@ -1,1 +1,1 @@
-@reduxjs/toolkit react-redux
+redux toolkit & createAsyncThunk
