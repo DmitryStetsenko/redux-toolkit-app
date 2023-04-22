@@ -12,7 +12,9 @@ export const fetchTodos = createAsyncThunk(
 const todoSlice = createSlice({
     name: 'todos',
     initialState: {
-        todos: []
+        todos: [],
+        status: null,
+        error: null,
     },
     reducers: {
         addTodo(state, action) {
@@ -30,6 +32,11 @@ const todoSlice = createSlice({
             toggleTodo.completed = !toggleTodo.completed;
         },
     },
+    extraReducers: {
+        [fetchTodos.pending]: (state, action) => {},
+        [fetchTodos.fulfilled]: (state, action) => {},
+        [fetchTodos.rejected]: (state, action) => {},
+    }
 });
 
 export const { addTodo, delTodo, toggleTodoCompleted } = todoSlice.actions;
