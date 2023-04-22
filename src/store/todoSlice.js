@@ -33,8 +33,14 @@ const todoSlice = createSlice({
         },
     },
     extraReducers: {
-        [fetchTodos.pending]: (state, action) => {},
-        [fetchTodos.fulfilled]: (state, action) => {},
+        [fetchTodos.pending]: (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+        },
+        [fetchTodos.fulfilled]: (state, action) => {
+            state.status = 'resolved';
+            state.todos = action.payload;
+        },
         [fetchTodos.rejected]: (state, action) => {},
     }
 });
